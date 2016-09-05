@@ -9,7 +9,7 @@ CONFIG-=app_bundle
 # Auto include all .cpp files in the project src directory (can specifiy individually if required)
 SOURCES+= $$PWD/main.cpp
 INCLUDEPATH+=/usr/local/include
-
+CONFIG+=c++14
 # same for the .h files
 
 DEPENDPATH+=$$PWD
@@ -27,8 +27,8 @@ LIBS+=$$system(sdl2-config  --libs)
 LIBS += -l SDL2_image
 message(output from sdl2-config --libs added to LIB=$$LIBS)
 
-#QMAKE_CXXFLAGS+=$$system(Magick++-config --cppflags )
-#LIBS+=$$system(Magick++-config --ldflags --libs )
+QMAKE_CXXFLAGS+=$$system(Magick++-config --cppflags )
+LIBS+=$$system(Magick++-config --ldflags --libs )
 
-macx:QMAKE_CXXFLAGS+=-DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16 -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16 -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16 -I/usr/local/include/ImageMagick-6
-macx:LIBS+= -L/usr/local/lib -lMagick++-6.Q16 -lMagickWand-6.Q16 -lMagickCore-6.Q16
+#macx:QMAKE_CXXFLAGS+=-DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16 -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16 -DMAGICKCORE_HDRI_ENABLE=1 -DMAGICKCORE_QUANTUM_DEPTH=16 -I/usr/local/include/ImageMagick-6
+#macx:LIBS+= -L/usr/local/lib -lMagick++-6.Q16 -lMagickWand-6.Q16 -lMagickCore-6.Q16

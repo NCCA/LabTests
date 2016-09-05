@@ -25,7 +25,8 @@ int main(int argc, char** argv)
   testing::InitGoogleTest(&argc, argv);
 
   auto ret=RUN_ALL_TESTS();
-  removeFiles();
+  if(argc <=1)
+    removeFiles();
 
   SDL_Quit();
   return ret;
@@ -88,9 +89,9 @@ TEST(SDL_Image,jpg)
    EXPECT_TRUE(loadImage("test.jpg") !=0);
 }
 
-TEST(SDL_Image,tif)
+TEST(SDL_Image,tiff)
 {
-   EXPECT_TRUE(loadImage("test.tif") !=0);
+   EXPECT_TRUE(loadImage("test.tiff") !=0);
 }
 
 TEST(SDL_Image,lbm)
@@ -104,7 +105,7 @@ TEST(SDL_Image,png)
 }
 
 constexpr std::array<const char *, 12> gExtensions={
-  {"tga","bmp","pbm","pgm","ppm","xpm","pcx","gif","jpg","tif","lbm","png"}
+  {"tga","bmp","pbm","pgm","ppm","xpm","pcx","gif","jpg","tiff","lbm","png"}
 };
 
 void generateImages()
@@ -112,11 +113,18 @@ void generateImages()
   constexpr unsigned int           WIDTH     = 800;
   constexpr unsigned int           HEIGHT    = 800;
   constexpr auto                   imageSize = WIDTH * HEIGHT * 3 * sizeof(unsigned char);
-  std::unique_ptr<unsigned char[]> image(new unsigned char[imageSize]);
+  // c++ 11
+  //std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
+  // c++ 14
+  std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
   // set background colour
   std::for_each(image.get(), image.get() + imageSize, [](unsigned char& n) { n = 255; });
+  // or use std::fill
+  // std::fill(image.get(), image.get() + imageSize,  255);
+
   // set pixel as lambda
-  auto setPixel = [&image](size_t _x, size_t _y, unsigned char _r, unsigned char _g, unsigned char _b) {
+  auto setPixel = [&image](size_t _x, size_t _y, unsigned char _r, unsigned char _g, unsigned char _b)
+  {
     size_t index           = (_y * WIDTH * 3) + _x * 3;
     image.get()[index]     = _r;
     image.get()[index + 1] = _g;
