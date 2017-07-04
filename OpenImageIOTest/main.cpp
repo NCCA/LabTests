@@ -27,99 +27,83 @@ int main(int argc, char** argv)
 
 
 
-OpenImageIO::ImageSpec loadImage(const std::string &_fname)
+void loadImage(const std::string &_fname)
 {
   using namespace OpenImageIO;
   std::unique_ptr<ImageInput> in (ImageInput::create (_fname));
   ImageSpec spec;
   in->open (_fname, spec);
-  auto xres = spec.width;
-  auto yres = spec.height;
-  auto channels = spec.depth;
 //  std::unique_ptr<unsigned char[]> pixels=std::make_unique<unsigned char []>(xres*yres*channels);
-  std::unique_ptr<unsigned char[]> pixels(new unsigned char [xres*yres*channels]);
+  std::unique_ptr<unsigned char[]> pixels(new unsigned char [spec.width*spec.height*spec.nchannels]);
+  EXPECT_EQ(spec.width,WIDTH);
+  EXPECT_EQ(spec.height,HEIGHT);
+  EXPECT_EQ(spec.nchannels,3);
+
   in->read_image (TypeDesc::UINT8, pixels.get());
+  // test pixels to be honest this is a bit crap but hey
+  // use 25 for jpg compression
+  EXPECT_NEAR(pixels[0],255,25);
+  EXPECT_NEAR(pixels[1],255,25);
+  EXPECT_NEAR(pixels[2],255,25);
+
+  size_t index           = (2 * WIDTH * 3) + 2 * 3;
+  // red
+  EXPECT_NEAR(pixels[index],255,25);
+  EXPECT_NEAR(pixels[index+1],0,25);
+  EXPECT_NEAR(pixels[index+2],0,25);
+
   in->close ();
-  return spec;
+
+
 }
 
 TEST(SDL_Image,tga)
 {
- auto spec=loadImage("test.tga");
- EXPECT_EQ(spec.width,WIDTH);
- EXPECT_EQ(spec.height,HEIGHT);
- EXPECT_EQ(spec.depth,3);
+ loadImage("test.tga");
 }
 
 
 TEST(SDL_Image,bmp)
 {
-  auto spec=loadImage("test.bmp");
-  EXPECT_EQ(spec.width,WIDTH);
-  EXPECT_EQ(spec.height,HEIGHT);
-  EXPECT_EQ(spec.depth,3);
+  loadImage("test.bmp");
 }
 
 TEST(SDL_Image,pbm)
 {
-   auto spec=loadImage("test.pbm");
-   EXPECT_EQ(spec.width,WIDTH);
-   EXPECT_EQ(spec.height,HEIGHT);
-   EXPECT_EQ(spec.depth,3);
+  loadImage("test.pbm");
 }
 
 TEST(SDL_Image,pgm)
 {
-   auto spec=loadImage("test.pgm");
-   EXPECT_EQ(spec.width,WIDTH);
-   EXPECT_EQ(spec.height,HEIGHT);
-   EXPECT_EQ(spec.depth,3);
-
+  loadImage("test.pgm");
 }
 
 TEST(SDL_Image,ppm)
 {
-   auto spec=loadImage("test.ppm");
-   EXPECT_EQ(spec.width,WIDTH);
-   EXPECT_EQ(spec.height,HEIGHT);
-   EXPECT_EQ(spec.depth,3);
-
+  loadImage("test.ppm");
 }
 
 
 TEST(SDL_Image,jpg)
 {
-  auto spec=loadImage("test.jpg");
-  EXPECT_EQ(spec.width,WIDTH);
-  EXPECT_EQ(spec.height,HEIGHT);
-  EXPECT_EQ(spec.depth,3);
+  loadImage("test.jpg");
 }
 
 TEST(SDL_Image,tiff)
 {
-  auto spec=loadImage("test.tiff");
-  EXPECT_EQ(spec.width,WIDTH);
-  EXPECT_EQ(spec.height,HEIGHT);
-  EXPECT_EQ(spec.depth,3);
-
+  loadImage("test.tiff");
 }
 
 
 
 TEST(SDL_Image,png)
 {
-  auto spec=loadImage("test.png");
-  EXPECT_EQ(spec.width,WIDTH);
-  EXPECT_EQ(spec.height,HEIGHT);
-  EXPECT_EQ(spec.depth,3);
+  loadImage("test.png");
 }
 
 TEST(SDL_Image,exr)
 {
-  auto spec=loadImage("test.exr");
-  EXPECT_EQ(spec.width,WIDTH);
-  EXPECT_EQ(spec.height,HEIGHT);
-  EXPECT_EQ(spec.depth,3);
+ loadImage("test.exr");
 }
 
 
