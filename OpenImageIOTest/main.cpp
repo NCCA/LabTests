@@ -36,7 +36,8 @@ OpenImageIO::ImageSpec loadImage(const std::string &_fname)
   auto xres = spec.width;
   auto yres = spec.height;
   auto channels = spec.depth;
-  std::unique_ptr<unsigned char[]> pixels=std::make_unique<unsigned char []>(xres*yres*channels);
+//  std::unique_ptr<unsigned char[]> pixels=std::make_unique<unsigned char []>(xres*yres*channels);
+  std::unique_ptr<unsigned char[]> pixels(new unsigned char [xres*yres*channels]);
   in->read_image (TypeDesc::UINT8, pixels.get());
   in->close ();
   return spec;
@@ -130,9 +131,9 @@ void generateImages()
 {
   constexpr auto                   imageSize = WIDTH * HEIGHT * 3 * sizeof(unsigned char);
   // c++ 11
-  //std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
+  std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
   // c++ 14
-  std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
+  //std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
   // set background colour
   std::for_each(image.get(), image.get() + imageSize, [](unsigned char& n) { n = 255; });
   // or use std::fill
