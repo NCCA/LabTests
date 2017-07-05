@@ -114,11 +114,11 @@ void generateImages()
   constexpr unsigned int           HEIGHT    = 800;
   constexpr auto                   imageSize = WIDTH * HEIGHT * 3 * sizeof(unsigned char);
   // c++ 11
-  //std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
+  std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
   // c++ 14
-  std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
+  //std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
   // set background colour
-  std::for_each(image.get(), image.get() + imageSize, [](unsigned char& n) { n = 255; });
+  std::for_each(image.get(), image.get() + imageSize, [](unsigned char &n) { n = 255; });
   // or use std::fill
   // std::fill(image.get(), image.get() + imageSize,  255);
 
@@ -131,7 +131,7 @@ void generateImages()
     image.get()[index + 2] = _b;
   };
 
-  for (size_t y = 0; y < HEIGHT; ++y)
+/*  for (size_t y = 0; y < HEIGHT; ++y)
   {
     for (size_t x = 0; x < WIDTH; ++x)
     {
@@ -145,7 +145,7 @@ void generateImages()
       }
     }
   }
-
+*/
   Magick::InitializeMagick("./");
 
   for(auto ext : gExtensions)

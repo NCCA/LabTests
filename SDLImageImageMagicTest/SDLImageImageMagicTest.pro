@@ -9,7 +9,7 @@ CONFIG-=app_bundle
 # Auto include all .cpp files in the project src directory (can specifiy individually if required)
 SOURCES+= $$PWD/main.cpp
 INCLUDEPATH+=/usr/local/include
-CONFIG+=c++14
+CONFIG+=c++11
 # same for the .h files
 
 DEPENDPATH+=$$PWD
