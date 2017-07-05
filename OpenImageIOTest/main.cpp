@@ -57,51 +57,51 @@ void loadImage(const std::string &_fname)
 
 }
 
-TEST(SDL_Image,tga)
+TEST(OIIO_Image,tga)
 {
  loadImage("test.tga");
 }
 
 
-TEST(SDL_Image,bmp)
+TEST(OIIO_Image,bmp)
 {
   loadImage("test.bmp");
 }
 
-TEST(SDL_Image,pbm)
+TEST(OIIO_Image,pbm)
 {
   loadImage("test.pbm");
 }
 
-TEST(SDL_Image,pgm)
+TEST(OIIO_Image,pgm)
 {
   loadImage("test.pgm");
 }
 
-TEST(SDL_Image,ppm)
+TEST(OIIO_Image,ppm)
 {
   loadImage("test.ppm");
 }
 
 
-TEST(SDL_Image,jpg)
+TEST(OIIO_Image,jpg)
 {
   loadImage("test.jpg");
 }
 
-TEST(SDL_Image,tiff)
+TEST(OIIO_Image,tiff)
 {
   loadImage("test.tiff");
 }
 
 
 
-TEST(SDL_Image,png)
+TEST(OIIO_Image,png)
 {
   loadImage("test.png");
 }
 
-TEST(SDL_Image,exr)
+TEST(OIIO_Image,exr)
 {
  loadImage("test.exr");
 }
