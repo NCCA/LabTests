@@ -14,7 +14,9 @@ def testImport(module) :
 class MyTest(unittest.TestCase):
     def testOpenColorIO(self):
         self.assertTrue(testImport('PyOpenColorIO'))
-
+    def testNumpy(self) :
+	self.assertTrue(testImport('numpy'))
+	self.assertTrue(testImport('scipy'))
 
 if __name__ == '__main__':
     unittest.main()
