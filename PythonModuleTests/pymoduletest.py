@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 import unittest
+import importlib
 
 def testImport(module) :
     try:
-        import module as test
-        return True
+        #import module as test
+        importlib.import_module(module)
+	return True
     except ImportError:
         return False
 
