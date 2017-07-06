@@ -106,9 +106,12 @@ TEST(OIIO_Image,exr)
  loadImage("test.exr");
 }
 
-
-constexpr std::array<const char *, 9> gExtensions={
-  {"tga","bmp","pbm","pgm","ppm","jpg","tiff","png","exr"}
+TEST(OIIO_Image,z)
+{
+ loadImage("test.ico");
+}
+constexpr std::array<const char *, 10> gExtensions={
+  {"tga","bmp","pbm","pgm","ppm","jpg","tiff","png","exr","z"}
 };
 
 void generateImages()
