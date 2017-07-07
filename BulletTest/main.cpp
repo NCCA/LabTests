@@ -50,7 +50,7 @@
 		
     std::cout<<trans.getOrigin().getX()<<' '<<trans.getOrigin().getY()<<' ' <<trans.getOrigin().getZ()<<'\n';
   }
-
+	std::cout<<'\n';
 	dynamicsWorld->removeRigidBody(fallRigidBody);
 	delete fallRigidBody->getMotionState();
 	delete fallRigidBody;
