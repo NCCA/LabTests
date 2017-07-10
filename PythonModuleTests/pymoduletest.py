@@ -2,6 +2,16 @@
 import unittest
 import importlib
 
+tests = [
+        ['OpenColorIO import test','PyOpenColorIO'],
+        ['Numpy import test','numpy'],
+        ['SciPy import test','scipy'],
+        ['Alembic import test','alembic'],
+        ['OpenEXR import test','OpenEXR'],    
+        ['OpenImageIO import test','OpenImageIO'],
+        ['PyQt5 import test','PyQt5']    
+        ]
+
 def testImport(module) :
     try:
         #import module as test
@@ -11,23 +21,23 @@ def testImport(module) :
         return False
 
 
-class MyTest(unittest.TestCase):
-    def testOpenColorIO(self):
-        self.assertTrue(testImport('PyOpenColorIO'))
-    def testNumpy(self) :
-	self.assertTrue(testImport('numpy'))
-	self.assertTrue(testImport('scipy'))
-    def testOIIO(self) :
-	self.assertTrue(testImport('OpenImageIO'))
+""" see discussion here for this idea of auto unit tests
+https://stackoverflow.com/questions/32899/how-to-generate-dynamic-parametrized-unit-tests-in-python
 
-    def testOpenEXR(self) :
-	self.assertTrue(testImport('OpenEXR'))
-	self.assertTrue(testImport('Imath'))
+"""
 
-    def testAlembic(self) :
-	self.assertTrue(testImport('alembic'))
-    
-    def testPyQt(self) :
-	self.assertTrue(testImport('PyQt5'))
+class TestSequence(unittest.TestCase):
+    pass
+
+def testGenerator(a):
+    def test(self):
+        self.assertTrue(testImport(a))
+    return test
+
 if __name__ == '__main__':
+    for t in tests:
+        testName = 'test_%s' % t[0]
+        test = testGenerator(t[1])
+        setattr(TestSequence, testName, test)
     unittest.main()
+
