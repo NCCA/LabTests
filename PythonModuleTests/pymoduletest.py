@@ -3,7 +3,7 @@ import unittest
 
 def testImport(module) :
     try:
-        import module as test
+        importlib.import_module(modu
         return True
     except ImportError:
         return False
