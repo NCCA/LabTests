@@ -6,11 +6,14 @@ tests = [
         ['OpenColorIO import test','PyOpenColorIO'],
         ['Numpy import test','numpy'],
         ['SciPy import test','scipy'],
-        ['Alembic import test','alembic'],
+        ['SciPy lin algebra import test','scipy.misc'],
+	['Alembic import test','alembic'],
         ['OpenEXR import test','OpenEXR'],    
         ['OpenImageIO import test','OpenImageIO'],
-        ['PyQt5 import test','PyQt5']    
-        ]
+        ['PyQt5 import test','PyQt5'],
+	['MaterialX import test','MaterialX']    
+       
+ ]
 
 def testImport(module) :
     try:
