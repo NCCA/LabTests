@@ -11,7 +11,14 @@ tests = [
         ['OpenEXR import test','OpenEXR'],    
         ['OpenImageIO import test','OpenImageIO'],
         ['PyQt5 import test','PyQt5'],
-	['MaterialX import test','MaterialX']    
+	['MaterialX import test','MaterialX'],
+	['Python OpenGL import test','OpenGL.GL'],
+	['OpenGL Glut import test','OpenGL.GLUT'],
+	['OpenGL GLU import test','OpenGL.GLU'],
+	['SDL2 import test','sdl2'],
+	['GLFW3 import test','glfw'],
+    
+
        
  ]
 

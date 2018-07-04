@@ -4,11 +4,9 @@ TARGET=SDLImageImageMagicTest
 OBJECTS_DIR=obj
 # core Qt Libs to use add more here if needed.
 QT-=gui opengl core
-
 CONFIG-=app_bundle
 # Auto include all .cpp files in the project src directory (can specifiy individually if required)
 SOURCES+= $$PWD/main.cpp
-INCLUDEPATH+=/usr/local/include
 CONFIG+=c++11
 # same for the .h files
 
@@ -17,7 +15,7 @@ DEPENDPATH+=$$PWD
 DESTDIR=./
 # were are going to default to a console app
 CONFIG += console
-LIBS+= -L/usr/local/lib -lgtest
+LIBS+= -lgtest
 
 # this demo uses SDL so add the paths using the sdl2-config tool
 QMAKE_CXXFLAGS+=$$system(sdl2-config  --cflags)
