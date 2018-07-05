@@ -44,7 +44,7 @@ int main( int argc, char* argv[] )
 
 void loadImage(const std::string &_fname)
 {
-  using namespace OpenImageIO;
+  using namespace OIIO;
   std::unique_ptr<ImageInput> in (ImageInput::create (_fname));
   ImageSpec spec;
   in->open (_fname, spec);
@@ -166,20 +166,20 @@ void generateImages()
   }
 
 
-  using namespace OpenImageIO;
+  using namespace OIIO;
 
   for(auto ext : gExtensions)
   {
     std::string fname("test.");
     fname+=ext;
     const int channels = 3; // RGB
-    ImageOutput *out = ImageOutput::create (fname);
+    std::unique_ptr<ImageOutput> out = ImageOutput::create(fname);
     ImageSpec spec (WIDTH, HEIGHT, channels, TypeDesc::UINT8);
     //std::cout<<fname<<'\n';
     out->open (fname, spec);
     out->write_image (TypeDesc::UINT8, &image[0]);
     out->close ();
-    delete out;
+    //delete out;
 
   }
 }
