@@ -1,3 +1,4 @@
+QMAKE_CXX=clang++
 TARGET=OpenImageIOTests
 SOURCES+=main.cpp
 CONFIG+=c++14

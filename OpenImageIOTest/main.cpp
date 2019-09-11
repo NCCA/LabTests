@@ -190,7 +190,7 @@ void removeFiles()
   {
     std::string fname("test.");
     fname+=ext;
-    std::remove(fname.c_str());
+//    std::remove(fname.c_str());
   }
 }
 

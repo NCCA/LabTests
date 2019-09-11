@@ -17,7 +17,8 @@ tests = [
 	['OpenGL GLU import test','OpenGL.GLU'],
 	['SDL2 import test','sdl2'],
 	['GLFW3 import test','glfw'],
-    
+  ['OpenVDB import test','pyopenvdb'],
+  ['PySide2 import test','PySide2']  
 
        
  ]
