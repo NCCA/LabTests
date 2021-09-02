@@ -186,12 +186,12 @@ void generateImages()
 
 void removeFiles()
 {
-  // for(auto ext : gExtensions)
-  // {
-  //   std::string fname("test.");
-  //   fname+=ext;
-  //   std::remove(fname.c_str());
-  // }
+  for(auto ext : gExtensions)
+  {
+    std::string fname("test.");
+    fname+=ext;
+//    std::remove(fname.c_str());
+  }
 }
 
 

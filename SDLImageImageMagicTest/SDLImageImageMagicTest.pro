@@ -1,4 +1,5 @@
 # This specifies the exe name
+QMAKE_CXX=clang++
 TARGET=SDLImageImageMagicTest
 # where to put the .o files
 OBJECTS_DIR=obj
@@ -7,7 +8,7 @@ QT-=gui opengl core
 CONFIG-=app_bundle
 # Auto include all .cpp files in the project src directory (can specifiy individually if required)
 SOURCES+= $$PWD/main.cpp
-CONFIG+=c++11
+CONFIG+=c++14
 # same for the .h files
 
 DEPENDPATH+=$$PWD

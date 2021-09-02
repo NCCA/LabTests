@@ -1,3 +1,4 @@
+QMAKE_CXX=clang++
 # This specifies the exe name
 TARGET=HelloBullet
 # where to put the .o files
